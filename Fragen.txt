@@ -1,0 +1,196 @@
+# Syntax:
+# # - Kommentar (Anfang der Zeile)
+#
+# ${ 
+#  ... - Beinhaltet Fragentext
+# }{
+#  ...- Beinhaltet Hinweistext
+# } 
+#
+# [ #Zeichen : #Zeilen ] - Textfeld (standart = 30:1)
+# [ ... | ... ] - Ja-Nein Buttons (links rechts Text für Button. Default (|) ist Ja-Nein)
+
+#Anfangsfragen
+${
+Name: [:]
+Adresse: [:]
+Telefon: [:]
+Datum: [:]
+Geschlecht: [m|w]
+Geburtsdatum: [:]
+Interviewer/in: [:]
+}{
+TODO: 
+    Antworten speichern
+    Bedingungen beachten
+    Fragen abschreiben
+}
+
+${
+Ich werde Ihnen eine Anzahl von Fragen zu unterschiedlichen Bereichen Ihres Lebens stellen. Zunächst wüsste ich gerne, ob Sie in letzer Zeit Probleme oder Schwierigkeiten hatten? [|]
+
+Falls Ja: Worin bestehen oder bestanden die Beschwerden? 
+[46:9]
+
+Jetzt möchte ich Ihnen weitere Fragen über verschiedene einzelne Bereiche stellen, in denen Menschen Probleme haben können.
+
+}{
+}
+
+#----------------------------------------------------------------------------
+#--------------------Problembereich Angst (Anfang)---------------------------
+#----------------------------------------------------------------------------
+${
+PROBLEMBEREICH ANGST
+
+Ich werde Ihnen nun einige Beispiele nennen und Möchte sie bitten, jeweils zu entscheiden, ob die folgenden Situationen ihnen Angst machen oder ob Sie sie möglichst vermeiden:
+
+PS: Plötzliche und unerwartete Angst, ohne reale Gefahr vorliegt? [|]
+AG: bestimmte Situationen und Orte wie z.B Kaufhäuser, Autofahren, Menschenmengen, Fahrstühle oder geschlossene Räume? [|]
+Sp: Situationen, in denen Sie von anderen Menschen beobachtet oder bewertet werdenkönntzen wie z.B. öffentliches Sprechen, Zusammenkünfte, Parties oder Gespräche? [|]
+SPP: Bestimmte Dinge wie z.B. Tiere, Höhen, Flugreisen oder der Anblick von Blut und Verletzungen [|]
+GAS: Leiden Sie häufig unter unangemessenen starken Sorgen, z.B. über familiäre, berufliche oder finanzielle Angelegenheiten? [|]
+PB: Haben Sie schon einmal ein extrem belastender, lebensbedrohliches oder traumatisches Erigenis erlebt, nach dem es Ihnen sehr schlecht ging, wie z.B. eine Vergewaltigung, andere Gewalttaten oder Naturkatastrophen? [|]
+
+Störungsbereiche, für die Angst oder Vermeidung berichtet werden, einzeln abklären. Falls alle bereiche mit Nein beantwortet werden, weiter zum Problembereich Zwang.
+
+}{
+ANGST
+Phobien: Agoraphobien, Sozialphobien und spezifische Phobien können sich hinsichtlich der phobischen Objekte oder Situationen überlappen.
+
+Abgrenzung verschiedener Phobien:
+
+Neben den DSM-Kriterien können die folgenden Merkmale zur Abgrenzung dienen:
+ 1. Das Muster der phobischen Reize (siehe nebenstehendes Beispiel)
+ 2. Die zentralen Befürchtungen (Agoraphobie: Angst vor Angstanfall oder dessen Konsequenzen, Sozialphobie: Angst vor negativer Bewertung, spezifische Phobie: Angst vor unmittelbar vom Objekt ausgehenden Gefahren).
+}
+
+#------------------------------------PS-------------------------------------
+${
+Paniksyndrom (PS)
+
+In welchen Situationen tritt diese plötzliche unerwartete Angst auf? [30:3]
+Treten diese Angstfälle manchmal auch "wie aus heiterem Himmel" ohne jeden ersichtlichen Grund auf? [|]
+
+Erleben sie während dieser Angstfälle...
+  ... Kurzatmigket oder Atemnot? [|]
+  ... Erstickungs- oder Würgegefühle? [|]
+  ... Herzklopfen, -rasen oder -stolpern? [|]
+  ... Schmerzen oder Beklemmungsgefühle in der Brust? [|]
+  ... Schwitzen? [|]
+  ... Schwindel, Benommenheit oder Schwächegefühle? [|]
+  ... Übelkeit oder Magen-/Darmbeschwerden? [|]
+  ... Gefühle der Unwirklichkeit oder des Losgelöstseins? [|]
+  ... Taubheit oder Kribbeln in Körperteilen? [|]
+  ... Hitzewallungen oder Kälteschauer? [|]
+  ... Zittern oder Beben? [|]
+  ... Todesangst? [|]
+  ... Angst, verrückt zu werden? [|]
+  ... Angst, etwas Unkontrolliertes zu tun? [|]
+}{
+Paniksyndrom ohne Agoraphobie bzw. Paniksyndrom mit Agoraphobie
+
+Hauptmerkmal: Angstanfälle oder dauerhafte diesbezügliche Sorgen
+Angstanfälle: plötzlich, "spontan", intensiv, Körpersymptome, Gefahrengefühl
+Typisch: "Angst vor der Angst", befürchtete katastrophale Konsequenzen
+SPontanität: unerwartet, ohne erkennbare Ursache, nicht situationsgebunden
+Agoraphobie: ausgeprägtes Vermeidungsverhalten (siehe unten)
+
+Für die Diagnose müssen v.a. folgende spezielle Kriterien erfüllt sein:
+Spontaneität: mindestens manchmal Anfälle unerwartet
+Symptome: mindestens vier der nebenan genannten Symptome
+Zeitverlauf: Symptome wenigstens manchmal innerhalb von 10 Minuten nach Anfallsbeginn vorhanden
+Häufigkeit: wiederkehrende unerwartete Anfälle, die zu einer bedeutsamen Varhaltensänderung führen oder mindestens einen Monat lang von anhaltender Sorge über weitere Anfälle oder deren Konsequenzen begleitet sind
+Abgrenzung: Wenn Angstanfälle nur bei bestimmten Reizen: spezifische Phobie(z.B. Hundephobie), nur in sozialen Situationen: Sozialphobie
+}
+
+#wenn weniger als 4 bei PS genannt wurden
+${
+Falls weniger als vier Symptome genannt werden, zusätzlich nach den Symptomen während des schwersten Anfalles fragen:
+
+Hatten sie schon mehrere solcher unerwarteter Angstanfälle? [|]
+Haben diese Angstanfälle Sie in Ihrem Verhalten stark beeinflusst? [|]
+Haben Sie sich schon einmal mindestens vier Wochen lang nach einem Anfall Sorgen über weitere Anfälle oder ihre Beduetung gemacht? [|]
+}{
+}
+
+#------------------------------------AG-------------------------------------
+${
+Agoraphobie (AG)
+
+Sie hatten berichtet, dass Sie bestimmte Situationen vermeiden oder dass diese Ihnen Angst machen. Welche Situationen sind dies und was beführchten Sie könnte Ihnen dort schlimmstenfalls passieren? [40:2]
+Hängt die Angst bzw. Vermeidung damit zusammen, dass Sie sich in diesen Situationen änglich oder krank fühlen könnten und es dann besonders schwierig wäre, die Situation zu verlassen? [|]
+Fühlen Sie sich mit deiner Begleitperson sicherer? [|]
+}{
+Paniksyndrom mot Agoraphobie bzw. Agoraphobie ohne Paniksyndrom
+
+Hauptmerkmal: Furcht/Vermeidung angstfallrelevanter Situationen
+Beispiele: Autofahren, Kaufhäuser, Supermärkte, Fahrstüchle, Menschenmengen, alleine das Haus verlassen, Schlange stehen, öffentliche Verkehrsmittel, Flugzeuge, Kinos, Theater
+Möglich: Angstanfälle völlig verschwinden, grfürchtete Situationen unter exteremer Angst ertragen
+Überschneidung: spezifische oder Sozialphobiker könne einzelne agoraphobische Situationen vermeiden, Agoraphobiker vermeiden jedoch mehr Situationen
+Zentrale Befürchtungen: v.a. Angstanfälle bzw. katastrophale Folegen (spezifische Phobiker: unmittelbar vom Objekt ausgehende Gehafren wie z.B. Flugzeugabsturz, Sozialphobiker: Blamage/negative Bewertung)
+Agoraphobie ohne Paniksyndrom: Vermeidung aus anderen Gründen (z.B. Angst vor durchfall oder exzessive Vermeidung im Zusammenhang mit körperlicher Krankheit)
+}
+
+#------------------------------------SP-------------------------------------
+${
+Sozialphobie (SP)
+TODO
+}{
+Sozielphobie
+TODO
+}
+
+#------------------------------------SPP-------------------------------------
+${
+Spezifische Phobien (SPP)
+TODO
+}{
+Spezifische Phobie
+TODO
+}
+
+#------------------------------------GAS-------------------------------------
+${
+Generalisiertes Angstsyndrom (GAS)
+TODO
+}{
+Generalisiertes Angstsyndrom
+TODO
+}
+
+#------------------------------------PB-------------------------------------
+${
+Posttraumatische Beslastungsreaktion (PB)
+TODO
+}{
+Posttraumatische Beslastungsreaktion
+TODO
+}
+
+#---------------------------------------------------------------------------
+#--------------------------Problembereich Zwang (ZS)------------------------
+#---------------------------------------------------------------------------
+${
+PROBLEMBEREICH ZWANG (ZS)
+
+}{
+}
+
+#---------------------------------------------------------------------------
+#----------------------Problembereich affektive Störungen-------------------
+#---------------------------------------------------------------------------
+${
+PROBLEMBEREICH AFFEKTIVE STÖRUNGEN
+Problemübersicht:
+
+}{
+}
+
+
+
+
+${
+ENDE
+}{
+}
