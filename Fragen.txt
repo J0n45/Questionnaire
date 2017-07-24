@@ -1,14 +1,21 @@
 # Syntax:
 # # - Kommentar (Anfang der Zeile)
 #
-# ${ 
+# ${ - Mit $ startet man Fragenabschnitt
 #  ... - Beinhaltet Fragentext
 # }{
 #  ...- Beinhaltet Hinweistext
-# } 
+# }
+# 
+# $ - ein $ beendet wieder einen Fragenabschnitt (eigene zeile)
+#     dazwichen koennen bel viele ({\n    }{\n    }) normale Fragen sein
 #
 # [ #Zeichen : #Zeilen ] - Textfeld (standart = 30:1)
 # [ ... | ... ] - Ja-Nein Buttons (links rechts Text für Button. Default (|) ist Ja-Nein)
+# [ ... |n| ... ] - Ja-Nein Buttons (links rechts Text für Button. Default (|) ist Ja-Nein)
+#                  sorg außerdem dafür dass eine Unterfrage erkannt wird und hiervon entschieden wird
+#                  n steht für eine zahl die feld mit bestimmter unterfrage verbindet (ab 0 zählend)
+#                  wird davon ausgegangen, dass es richtig benutzt wird
 
 #Anfangsfragen
 ${
@@ -25,6 +32,7 @@ TODO:
     Bedingungen beachten
     Fragen abschreiben
 }
+$
 
 ${
 Ich werde Ihnen eine Anzahl von Fragen zu unterschiedlichen Bereichen Ihres Lebens stellen. Zunächst wüsste ich gerne, ob Sie in letzer Zeit Probleme oder Schwierigkeiten hatten? [|]
@@ -36,7 +44,7 @@ Jetzt möchte ich Ihnen weitere Fragen über verschiedene einzelne Bereiche stelle
 
 }{
 }
-
+$
 #----------------------------------------------------------------------------
 #--------------------Problembereich Angst (Anfang)---------------------------
 #----------------------------------------------------------------------------
@@ -45,12 +53,12 @@ PROBLEMBEREICH ANGST
 
 Ich werde Ihnen nun einige Beispiele nennen und Möchte sie bitten, jeweils zu entscheiden, ob die folgenden Situationen ihnen Angst machen oder ob Sie sie möglichst vermeiden:
 
-PS: Plötzliche und unerwartete Angst, ohne reale Gefahr vorliegt? [|]
-AG: bestimmte Situationen und Orte wie z.B Kaufhäuser, Autofahren, Menschenmengen, Fahrstühle oder geschlossene Räume? [|]
-Sp: Situationen, in denen Sie von anderen Menschen beobachtet oder bewertet werdenkönntzen wie z.B. öffentliches Sprechen, Zusammenkünfte, Parties oder Gespräche? [|]
-SPP: Bestimmte Dinge wie z.B. Tiere, Höhen, Flugreisen oder der Anblick von Blut und Verletzungen [|]
-GAS: Leiden Sie häufig unter unangemessenen starken Sorgen, z.B. über familiäre, berufliche oder finanzielle Angelegenheiten? [|]
-PB: Haben Sie schon einmal ein extrem belastender, lebensbedrohliches oder traumatisches Erigenis erlebt, nach dem es Ihnen sehr schlecht ging, wie z.B. eine Vergewaltigung, andere Gewalttaten oder Naturkatastrophen? [|]
+PS: Plötzliche und unerwartete Angst, ohne reale Gefahr vorliegt? [|0|]
+AG: bestimmte Situationen und Orte wie z.B Kaufhäuser, Autofahren, Menschenmengen, Fahrstühle oder geschlossene Räume? [|1|]
+Sp: Situationen, in denen Sie von anderen Menschen beobachtet oder bewertet werdenkönntzen wie z.B. öffentliches Sprechen, Zusammenkünfte, Parties oder Gespräche? [|2|]
+SPP: Bestimmte Dinge wie z.B. Tiere, Höhen, Flugreisen oder der Anblick von Blut und Verletzungen [|3|]
+GAS: Leiden Sie häufig unter unangemessenen starken Sorgen, z.B. über familiäre, berufliche oder finanzielle Angelegenheiten? [|4|]
+PB: Haben Sie schon einmal ein extrem belastender, lebensbedrohliches oder traumatisches Erigenis erlebt, nach dem es Ihnen sehr schlecht ging, wie z.B. eine Vergewaltigung, andere Gewalttaten oder Naturkatastrophen? [|5|]
 
 Störungsbereiche, für die Angst oder Vermeidung berichtet werden, einzeln abklären. Falls alle bereiche mit Nein beantwortet werden, weiter zum Problembereich Zwang.
 
@@ -66,7 +74,7 @@ Neben den DSM-Kriterien können die folgenden Merkmale zur Abgrenzung dienen:
 }
 
 #------------------------------------PS-------------------------------------
-${
+{
 Paniksyndrom (PS)
 
 In welchen Situationen tritt diese plötzliche unerwartete Angst auf? [30:3]
@@ -87,6 +95,12 @@ Erleben sie während dieser Angstfälle...
   ... Todesangst? [|]
   ... Angst, verrückt zu werden? [|]
   ... Angst, etwas Unkontrolliertes zu tun? [|]
+  
+Falls weniger als vier Symptome genannt werden, zusätzlich nach den Symptomen während des schwersten Anfalles fragen:
+
+Hatten sie schon mehrere solcher unerwarteter Angstanfälle? [|]
+Haben diese Angstanfälle Sie in Ihrem Verhalten stark beeinflusst? [|]
+Haben Sie sich schon einmal mindestens vier Wochen lang nach einem Anfall Sorgen über weitere Anfälle oder ihre Beduetung gemacht? [|]
 }{
 Paniksyndrom ohne Agoraphobie bzw. Paniksyndrom mit Agoraphobie
 
@@ -104,18 +118,8 @@ Häufigkeit: wiederkehrende unerwartete Anfälle, die zu einer bedeutsamen Varhalt
 Abgrenzung: Wenn Angstanfälle nur bei bestimmten Reizen: spezifische Phobie(z.B. Hundephobie), nur in sozialen Situationen: Sozialphobie
 }
 
-#wenn weniger als 4 bei PS genannt wurden
-${
-Falls weniger als vier Symptome genannt werden, zusätzlich nach den Symptomen während des schwersten Anfalles fragen:
-
-Hatten sie schon mehrere solcher unerwarteter Angstanfälle? [|]
-Haben diese Angstanfälle Sie in Ihrem Verhalten stark beeinflusst? [|]
-Haben Sie sich schon einmal mindestens vier Wochen lang nach einem Anfall Sorgen über weitere Anfälle oder ihre Beduetung gemacht? [|]
-}{
-}
-
 #------------------------------------AG-------------------------------------
-${
+{
 Agoraphobie (AG)
 
 Sie hatten berichtet, dass Sie bestimmte Situationen vermeiden oder dass diese Ihnen Angst machen. Welche Situationen sind dies und was beführchten Sie könnte Ihnen dort schlimmstenfalls passieren? [40:2]
@@ -133,7 +137,7 @@ Agoraphobie ohne Paniksyndrom: Vermeidung aus anderen Gründen (z.B. Angst vor du
 }
 
 #------------------------------------SP-------------------------------------
-${
+{
 Sozialphobie (SP)
 TODO
 }{
@@ -142,7 +146,7 @@ TODO
 }
 
 #------------------------------------SPP-------------------------------------
-${
+{
 Spezifische Phobien (SPP)
 TODO
 }{
@@ -151,7 +155,7 @@ TODO
 }
 
 #------------------------------------GAS-------------------------------------
-${
+{
 Generalisiertes Angstsyndrom (GAS)
 TODO
 }{
@@ -160,22 +164,33 @@ TODO
 }
 
 #------------------------------------PB-------------------------------------
-${
+{
 Posttraumatische Beslastungsreaktion (PB)
 TODO
 }{
 Posttraumatische Beslastungsreaktion
 TODO
 }
+$
 
 #---------------------------------------------------------------------------
 #--------------------------Problembereich Zwang (ZS)------------------------
 #---------------------------------------------------------------------------
 ${
 PROBLEMBEREICH ZWANG (ZS)
-
+[|0|]
 }{
 }
+
+{
+pROBLEMBEREICH ZWANG (ZS)
+    -unterfrage
+
+}{
+tada
+}
+
+$
 
 #---------------------------------------------------------------------------
 #----------------------Problembereich affektive Störungen-------------------
@@ -186,11 +201,11 @@ Problemübersicht:
 
 }{
 }
-
-
+$
 
 
 ${
 ENDE
 }{
 }
+$

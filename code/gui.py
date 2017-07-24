@@ -94,17 +94,16 @@ class Gui:
 
 
     #löscht alte fragen und fügt eine neue ein
-    def neue_fragen(self,frame_l,frame_r,width,height,frage,hinweis,antworten):
+    def neue_fragen(self,frame_l,frame_r,width,height,question):
         bgc=self.dat.bgcolor
-        self.get_antworten(antworten,frame_l)
         
         for child in frame_l.winfo_children()+frame_r.winfo_children():
             child.destroy()
         
         self.rbval = []
         #Die Labelframes mit Text füllen (durch Labels)
-        self.add_label(frame_l,frage.get_texte(width),frage.get_felder(),bgc,width)
-        self.add_label(frame_r,hinweis.get_texte(width),[],bgc,width)
+        self.add_label(frame_l,question.get_fragentexte(width),question.felder,bgc,width)
+        self.add_label(frame_r,question.get_hinweistext(width),[],bgc,width)
         
     #von neue_fragen aufgerufen
     #fügt die texte und die Eingabefelder ein
@@ -126,7 +125,7 @@ class Gui:
             
         elif "|" in feld :
             [l,r] = ["Ja","Nein"]
-            if feld != "|":
+            if feld != "|" and feld != "||":
                 [l,r] = feld.split('|', 2)
             var = IntVar()
             self.rbval.append(var)

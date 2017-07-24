@@ -1,4 +1,4 @@
-import frage
+import question, questionblock
 """
 ließt aus ..\Fragen.txt die fragen ein
  Syntax:
@@ -15,18 +15,20 @@ ließt aus ..\Fragen.txt die fragen ein
 """
 
 #ließt solange fragen bis die Datei leer ist
-def fragen_einlesen(fname):
+def qblocks_einlesen(fname):
     fragenf = open(fname, "r")
-    flist = []
+    qblocks = []
     for line in fragenf:
         if line.startswith("#"):
             continue
-        if line.startswith("$"):
-            flist.append(read_question(fragenf))
-            flist.append(read_hinweis(fragenf))
-    #for f in flist:
-    #    print(f.get_texte(500))
-    return flist
+        if line.startswith("${"):
+            qblock = read_questionblock(fragenf)
+            qblocks.append(qblock)
+    #for f in qblocks:  #zum testen
+    #    print(f.topfrage.get_texte(1000))
+    #    for (t,fg) in f.questions:
+    #        print("         ->"+str(fg.get_texte(1000)))
+    return qblocks
 
 #ließt einen hinweis ein
 def read_hinweis(fragenf):
@@ -36,8 +38,26 @@ def read_hinweis(fragenf):
         if l=="}":
             break
         htext += "\n" +l
-    return frage.Frage(-1,htext.strip('\n'))
+    return htext.strip('\n')
 
+#liest eine Fragenabschnitt ein von $ umkreist
+def read_questionblock(fragenf):
+    ftext = read_question(fragenf)
+    htext = read_hinweis(fragenf)
+    qb = questionblock.QuestionBlock(ftext,htext)
+    
+    for line in fragenf:
+        l=line.strip()
+        if l=="$":
+            break
+        if line.startswith("#"):
+            continue
+        if line.startswith("{"):
+            ftext = read_question(fragenf)
+            htext = read_hinweis(fragenf)
+            qb.add(question.Question(ftext,htext))
+    return qb
+    
 #liest eine Frage ein
 def read_question(fragenf):
     fragentext=""
@@ -46,4 +66,4 @@ def read_question(fragenf):
         if l=="}{":
             break
         fragentext += "\n" +l
-    return frage.Frage(1,fragentext.strip('\n'))
+    return fragentext.strip('\n')

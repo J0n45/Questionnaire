@@ -10,7 +10,7 @@ class Ablauf:
         self.dat=dat
         self.height=dat.window.winfo_height()-35
         self.width=(dat.window.winfo_width()//2)-10
-        self.pct=0
+        self.blockcounter=0
     
     #passt neu die proportionen an
     def update_wh(self, w,h):
@@ -19,17 +19,30 @@ class Ablauf:
     
     #schaltet auf die nächste frage
     def next(self):
-        antworten=self.dat.antworten
-        fragen=self.dat.fragen
+        qblocks=self.dat.qblocks
+        lf_l=self.dat.lf_l
         saver=self.dat.saver
         gui=self.dat.gui
-        if len(fragen) > 2*self.pct:
-            self.pct+=1
-            gui.neue_fragen(self.dat.lf_l,self.dat.lf_r, self.width, self.height,
-                            fragen[2*self.pct-2],fragen[2*self.pct-1],
-                            antworten[self.pct-1])
-            saver.write_all(antworten[1:])
-        else:
-            gui.get_antworten(antworten[len(antworten)-1],self.dat.lf_l)
-            saver.write_all(antworten[1:])
+        
+        #wenn alle fragen durch sind die antworten speichern
+        if len(qblocks) <= self.blockcounter:
+            saver.reset_antworten()
+            for q in qblocks:
+                q.save_all_antworten(saver)
             saver.save()
+            return
+        
+        #wenn noch fragen uebrig sind:
+        # entweder im block die naechste frage oder ein neuer block
+        qblock = qblocks[self.blockcounter]
+        if qblock.hasnext():
+            if qblock.fragencounter != -1:
+                qblock.collect_antworten(gui,lf_l)
+            someleft = qblock.neue_frage(self.dat, self.width, self.height)
+            if not someleft:
+                self.blockcounter+=1
+                self.next()
+        else:
+            qblock.collect_antworten(gui, lf_l)
+            self.blockcounter+=1
+            self.next()
